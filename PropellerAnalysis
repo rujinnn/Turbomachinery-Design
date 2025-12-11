@@ -1,0 +1,788 @@
+
+%% TURBOPROP DESING 
+%% LAB 1 
+
+%% LAB GROUP J
+%% MARIA SAN EMETERIO GONZALEZ 
+%% ANA BELEN ROMERA BAENA 
+%% WOOJIN LEE
+%% AIDAN JONES 
+
+clear all
+close all
+clc
+
+%% General characteristics
+rho = 1.225; % density (kg/m^3)
+d = 0.203; % diameter (m)
+
+%% V_inf measured before doing the experiment
+
+V0=0;
+V1=2.41;
+V2=2.44;
+V3=2.49;
+V4=2.71;
+V5=2.75;
+V6=2.85;
+V7=3.21;
+V8=3.30;
+V9=3.80;
+V10=3.90;
+V11=4.20;
+V12=4.30;
+V13=4.60;
+V14=4.80;
+V15=4.97;
+V16=5.38;
+V17=6.45;
+V18=8.32;
+
+
+%% extrac values of the excel 
+
+T_V0 = readtable('LAB 1.xlsx','Sheet','0');
+T_V1 = readtable('LAB 1.xlsx','Sheet','2.41');
+T_V2 = readtable('LAB 1.xlsx','Sheet','2.44');
+T_V3 = readtable('LAB 1.xlsx','Sheet','2.49');
+T_V4 = readtable('LAB 1.xlsx','Sheet','2.71');
+T_V5 = readtable('LAB 1.xlsx','Sheet','2.75');
+T_V6 = readtable('LAB 1.xlsx','Sheet','2.85');
+T_V7 = readtable('LAB 1.xlsx','Sheet','3.21');
+T_V8 = readtable('LAB 1.xlsx','Sheet','3.30');
+T_V9 = readtable('LAB 1.xlsx','Sheet','3.80');
+T_V10 = readtable('LAB 1.xlsx','Sheet','3.90');
+T_V11 = readtable('LAB 1.xlsx','Sheet','4.20');
+T_V12 = readtable('LAB 1.xlsx','Sheet','4.30');
+T_V13 = readtable('LAB 1.xlsx','Sheet','4.60');
+T_V14 = readtable('LAB 1.xlsx','Sheet','4.80');
+T_V15 = readtable('LAB 1.xlsx','Sheet','4.97');
+T_V16 = readtable('LAB 1.xlsx','Sheet','5.38');
+T_V17 = readtable('LAB 1.xlsx','Sheet','6.45');
+T_V18 = readtable('LAB 1.xlsx','Sheet','8.32');
+
+
+%% THRUST COEFFICIENT CALCULATION
+for i = 1:6
+    CT_0 (i)= T_V0.Thrust_N_(i)/ (rho* T_V0.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_1 (i)= T_V1.Thrust_N_(i)/ (rho* T_V1.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_2 (i)= T_V2.Thrust_N_(i)/ (rho* T_V2.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_3 (i)= T_V3.Thrust_N_(i)/ (rho* T_V3.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_4 (i)= T_V4.Thrust_N_(i)/ (rho* T_V4.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_5 (i)= T_V5.Thrust_N_(i)/ (rho* T_V5.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_6 (i)= T_V6.Thrust_N_(i)/ (rho* T_V6.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_7 (i)= T_V7.Thrust_N_(i)/ (rho* T_V7.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_8 (i)= T_V8.Thrust_N_(i)/ (rho* T_V8.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_9 (i)= T_V9.Thrust_N_(i)/ (rho* T_V9.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_10 (i)= T_V10.Thrust_N_(i)/ (rho* T_V10.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_11 (i)= T_V11.Thrust_N_(i)/ (rho* T_V11.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_12 (i)= T_V12.Thrust_N_(i)/ (rho* T_V12.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_13 (i)= T_V13.Thrust_N_(i)/ (rho* T_V13.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_14 (i)= T_V14.Thrust_N_(i)/ (rho* T_V14.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_15 (i)= T_V15.Thrust_N_(i)/ (rho* T_V15.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_16 (i)= T_V16.Thrust_N_(i)/ (rho* T_V16.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_17 (i)= T_V17.Thrust_N_(i)/ (rho* T_V17.N2(i)^2 * d^4);
+end
+
+for i = 1:6
+    CT_18 (i)= T_V18.Thrust_N_(i)/ (rho* T_V18.N2(i)^2 * d^4);
+end
+
+%% POWER COEFFICIENT CALCULATION
+
+for i = 1:6
+    CP_0 (i)= (T_V0.Voltage_V_(i)*T_V0.Current_A_(i))/ (rho* T_V0.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_1 (i)= (T_V1.Voltage_V_(i)*T_V1.Current_A_(i))/ (rho* T_V1.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_2 (i)= (T_V2.Voltage_V_(i)*T_V2.Current_A_(i))/ (rho* T_V2.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_3 (i)= (T_V3.Voltage_V_(i)*T_V3.Current_A_(i))/ (rho* T_V3.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_4 (i)= (T_V4.Voltage_V_(i)*T_V4.Current_A_(i))/ (rho* T_V4.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_5 (i)= (T_V5.Voltage_V_(i)*T_V5.Current_A_(i))/ (rho* T_V5.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_6 (i)= (T_V6.Voltage_V_(i)*T_V6.Current_A_(i))/ (rho* T_V6.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_7 (i)= (T_V7.Voltage_V_(i)*T_V7.Current_A_(i))/ (rho* T_V7.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_8 (i)= (T_V8.Voltage_V_(i)*T_V8.Current_A_(i))/ (rho* T_V8.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_9 (i)= (T_V9.Voltage_V_(i)*T_V9.Current_A_(i))/ (rho* T_V9.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_10 (i)= (T_V10.Voltage_V_(i)*T_V10.Current_A_(i))/ (rho* T_V10.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_11 (i)= (T_V11.Voltage_V_(i)*T_V11.Current_A_(i))/ (rho* T_V11.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_12 (i)= (T_V12.Voltage_V_(i)*T_V12.Current_A_(i))/ (rho* T_V12.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_13 (i)= (T_V13.Voltage_V_(i)*T_V13.Current_A_(i))/ (rho* T_V13.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_14 (i)= (T_V14.Voltage_V_(i)*T_V14.Current_A_(i))/ (rho* T_V14.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_15 (i)= (T_V15.Voltage_V_(i)*T_V15.Current_A_(i))/ (rho* T_V15.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_16 (i)= (T_V16.Voltage_V_(i)*T_V16.Current_A_(i))/ (rho* T_V16.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_17 (i)= (T_V17.Voltage_V_(i)*T_V17.Current_A_(i))/ (rho* T_V17.N2(i)^3 * d^5);
+end
+
+for i = 1:6
+    CP_18 (i)= (T_V18.Voltage_V_(i)*T_V18.Current_A_(i))/ (rho* T_V18.N2(i)^3 * d^5);
+end
+
+%% ADVANCE RATIO CALCULATIONS
+
+for i = 1:6
+    J_0 (i)= V0/ (T_V0.N2(i) * d);
+end
+
+for i = 1:6
+    J_1 (i)= V1/ (T_V1.N2(i) * d);
+end
+
+for i = 1:6
+    J_2 (i)= V2/ (T_V2.N2(i) * d);
+end
+
+for i = 1:6
+    J_3 (i)= V3/ (T_V3.N2(i) * d);
+end
+
+for i = 1:6
+    J_4 (i)= V4/ (T_V4.N2(i) * d);
+end
+
+for i = 1:6
+    J_5 (i)= V5/ (T_V5.N2(i) * d);
+end
+
+for i = 1:6
+    J_6 (i)= V6/ (T_V6.N2(i) * d);
+end
+
+for i = 1:6
+    J_7 (i)= V7/ (T_V7.N2(i) * d);
+end
+
+for i = 1:6
+    J_8 (i)= V8/ (T_V8.N2(i) * d);
+end
+
+for i = 1:6
+    J_9 (i)= V9/ (T_V9.N2(i) * d);
+end
+
+for i = 1:6
+    J_10 (i)= V10/ (T_V10.N2(i) * d);
+end
+
+for i = 1:6
+    J_11 (i)= V11/ (T_V11.N2(i) * d);
+end
+
+for i = 1:6
+    J_12 (i)= V12/ (T_V12.N2(i) * d);
+end
+
+for i = 1:6
+    J_13 (i)= V13/ (T_V13.N2(i) * d);
+end
+
+for i = 1:6
+    J_14 (i)= V14/ (T_V14.N2(i) * d);
+end
+
+for i = 1:6
+    J_15 (i)= V15/ (T_V15.N2(i) * d);
+end
+
+for i = 1:6
+    J_16 (i)= V16/ (T_V16.N2(i) * d);
+end
+
+for i = 1:6
+    J_17 (i)= V17/ (T_V17.N2(i) * d);
+end
+
+for i = 1:6
+    J_18 (i)= V18/ (T_V18.N2(i) * d);
+end
+
+%% ETA CALCULATIONS
+
+for i = 1:6
+    eta_0 (i)= (CT_0(i)/CP_0(i))*J_0(i);
+end
+
+for i = 1:6
+    eta_1 (i)= (CT_1(i)/CP_1(i))*J_1(i);
+end
+
+for i = 1:6
+    eta_2 (i)= (CT_2(i)/CP_2(i))*J_2(i);
+end
+
+for i = 1:6
+    eta_3 (i)= (CT_3(i)/CP_3(i))*J_3(i);
+end
+
+for i = 1:6
+    eta_4 (i)= (CT_4(i)/CP_4(i))*J_4(i);
+end
+
+for i = 1:6
+    eta_5 (i)= (CT_5(i)/CP_5(i))*J_5(i);
+end
+
+for i = 1:6
+    eta_6 (i)= (CT_6(i)/CP_6(i))*J_6(i);
+end
+
+for i = 1:6
+    eta_7 (i)= (CT_7(i)/CP_7(i))*J_7(i);
+end
+
+for i = 1:6
+    eta_8 (i)= (CT_8(i)/CP_8(i))*J_8(i);
+end
+
+for i = 1:6
+    eta_9 (i)= (CT_9(i)/CP_9(i))*J_9(i);
+end
+
+for i = 1:6
+    eta_10 (i)= (CT_10(i)/CP_10(i))*J_10(i);
+end
+
+for i = 1:6
+    eta_11 (i)= (CT_11(i)/CP_11(i))*J_11(i);
+end
+
+for i = 1:6
+    eta_12 (i)= (CT_12(i)/CP_12(i))*J_12(i);
+end
+
+for i = 1:6
+    eta_13 (i)= (CT_13(i)/CP_13(i))*J_13(i);
+end
+
+for i = 1:6
+    eta_14 (i)= (CT_14(i)/CP_14(i))*J_14(i);
+end
+
+for i = 1:6
+    eta_15 (i)= (CT_15(i)/CP_15(i))*J_15(i);
+end
+
+for i = 1:6
+    eta_16 (i)= (CT_16(i)/CP_16(i))*J_16(i);
+end
+
+for i = 1:6
+    eta_17 (i)= (CT_17(i)/CP_17(i))*J_17(i);
+end
+
+for i = 1:6
+    eta_18 (i)= (CT_18(i)/CP_18(i))*J_18(i);
+end
+
+
+%% `PLOTS FOR EVERY V_inf SEPARATELY
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 2.41 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_1,CT_1)
+plot (J_1,CP_1)
+plot(J_1, eta_1)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 2.44 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_2,CT_2)
+plot (J_2,CP_2)
+plot(J_2, eta_2)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 2.49 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_3,CT_3)
+plot (J_3,CP_3)
+plot(J_3, eta_3)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+figure (4)
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 2.71 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_4,CT_4)
+plot (J_4,CP_4)
+plot(J_4, eta_4)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+saveas(figure(4), 'plot4.jpg')
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 2.75 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_5,CT_5)
+plot (J_5,CP_5)
+plot(J_5, eta_5)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 2.85 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_6,CT_6)
+plot (J_6,CP_6)
+plot(J_6, eta_6)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 3.21 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_7,CT_7)
+plot (J_7,CP_7)
+plot(J_7, eta_7)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 3.30 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_8,CT_8)
+plot (J_8,CP_8)
+plot(J_8, eta_8)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 3.80 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_9,CT_9)
+plot (J_9,CP_9)
+plot(J_9, eta_9)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+figure (10)
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 3.90 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_10,CT_10)
+plot (J_10,CP_10)
+plot(J_10, eta_10)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+saveas(figure(10), 'plot10.jpg')
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 4.20 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_11,CT_11)
+plot (J_11,CP_11)
+plot(J_11, eta_11)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 4.30 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_12,CT_12)
+plot (J_12,CP_12)
+plot(J_12, eta_12)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 4.60 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_13,CT_13)
+plot (J_13,CP_13)
+plot(J_13, eta_13)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 4.80 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_14,CT_14)
+plot (J_14,CP_14)
+plot(J_14, eta_14)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 4.97 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_14,CT_14)
+plot (J_14,CP_14)
+plot(J_14, eta_14)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 5.38 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_15,CT_15)
+plot (J_15,CP_15)
+plot(J_15, eta_15)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+figure (17)
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 6.45 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_17,CT_17)
+plot (J_17,CP_17)
+plot(J_17, eta_17)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+saveas(figure(17), 'plot17.jpg')
+
+figure ()
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle ('Characteristic Curves of the propeller for u0 = 8.32 m/s','FontName', 'Times New Roman')
+hold on
+plot (J_18,CT_18)
+plot (J_18,CP_18)
+plot(J_18, eta_18)
+legend('Thust Coefficient','Power Coefficient','Eta', 'location', 'best')
+
+%% PLOT ALL TOGETHER 
+
+figure(19)
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+sgtitle('Characteristic Curves for the Propeller','FontName', 'Times New Roman')
+hold on
+
+% === Datos ===
+J_all   = [J_0,J_1,J_2,J_3,J_4,J_5,J_6,J_7,J_8,J_9,J_10,J_11,J_12,J_13,J_14,J_15,J_16,J_17,J_18];  
+CT_all  = [CT_0,CT_1,CT_2,CT_3,CT_4,CT_5,CT_6,CT_7,CT_8,CT_9,CT_10,CT_11,CT_12,CT_13,CT_14,CT_15,CT_16,CT_17,CT_18];  
+CP_all  = [CP_0,CP_1,CP_2,CP_3,CP_4,CP_5,CP_6,CP_7,CP_8,CP_9,CP_10,CP_11,CP_12,CP_13,CP_14,CP_15,CP_16,CP_17,CP_18]; 
+eta_all = [eta_0,eta_1,eta_2,eta_3,eta_4,eta_5,eta_6,eta_7,eta_8,eta_9,eta_10,eta_11,eta_12,eta_13,eta_14,eta_15,eta_16,eta_17,eta_18];  
+
+% === Asegurar que J_all sea único y ordenado ===
+[J_unique, idx] = unique(J_all);  % elimina duplicados
+CT_unique  = CT_all(idx);
+CP_unique  = CP_all(idx);
+eta_unique = eta_all(idx);
+
+% === Puntos originales ===
+plot(J_all, CT_all, 'bo', 'DisplayName', 'CT points')  
+plot(J_all, CP_all, 'ro', 'DisplayName', 'CP points')  
+plot(J_all, eta_all, 'go', 'DisplayName', 'eta points')  
+
+% === Interpolación y curvas suaves ===
+Jq = linspace(min(J_unique), max(J_unique), 200); % eje más fino
+
+CTq  = interp1(J_unique, CT_unique, Jq, 'pchip');  
+CPq  = interp1(J_unique, CP_unique, Jq, 'pchip');
+etaq = interp1(J_unique, eta_unique, Jq, 'pchip');
+
+plot(Jq, CTq,'b-', 'LineWidth', 1.5, 'DisplayName', 'CT interp')
+plot(Jq, CPq,'r-', 'LineWidth', 1.5, 'DisplayName', 'CP interp')
+plot(Jq, etaq,'g-','LineWidth', 1.5, 'DisplayName', 'eta interp')
+
+legend('Location','best')
+grid on
+hold off
+
+saveas(figure(19), 'plotall.jpg')
+
+
+%% REYNOLDS NUMBER CALCUÑATIONS
+%% calculation of the modulus of the velocity
+
+mu = 1.81*10^(-5);
+
+for i = 1 :6
+    v1 (i) = sqrt(V1^2 +(T_V1.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v2 (i) = sqrt(V2^2 +(T_V2.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v3 (i) = sqrt(V3^2 +(T_V3.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v4 (i) = sqrt(V4^2 +(T_V4.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v5 (i) = sqrt(V5^2 +(T_V5.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v6 (i) = sqrt(V6^2 +(T_V6.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v7 (i) = sqrt(V7^2 +(T_V7.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v8 (i) = sqrt(V8^2 +(T_V8.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v9 (i) = sqrt(V9^2 +(T_V9.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v10 (i) = sqrt(V10^2 +(T_V10.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v11 (i) = sqrt(V11^2 +(T_V11.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v12 (i) = sqrt(V12^2 +(T_V12.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v13 (i) = sqrt(V13^2 +(T_V13.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v14 (i) = sqrt(V14^2 +(T_V14.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v15 (i) = sqrt(V15^2 +(T_V15.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v16 (i) = sqrt(V16^2 +(T_V16.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v17 (i) = sqrt(V17^2 +(T_V17.N1(i)*d)^2);
+end
+
+for i = 1 :6
+    v18 (i) = sqrt(V18^2 +(T_V18.N1(i)*d)^2);
+end
+
+%% calculation of the reynolds number with the velocity modulus 
+for i = 1:6
+    Re1(i) = (rho*d^2*v1(i))/mu ;
+end
+
+
+for i = 1:6
+    Re2(i) = (rho*d^2*v2(i))/mu ;
+end
+
+for i = 1:6
+    Re3(i) = (rho*d^2*v3(i))/mu ;
+end
+
+for i = 1:6
+    Re4(i) = (rho*d^2*v4(i))/mu ;
+end
+
+for i = 1:6
+    Re5(i) = (rho*d^2*v5(i))/mu ;
+end
+
+for i = 1:6
+    Re6(i) = (rho*d^2*v6(i))/mu ;
+end
+
+for i = 1:6
+    Re7(i) = (rho*d^2*v7(i))/mu ;
+end
+
+for i = 1:6
+    Re8(i) = (rho*d^2*v8(i))/mu ;
+end
+
+for i = 1:6
+    Re9(i) = (rho*d^2*v9(i))/mu ;
+end
+
+for i = 1:6
+    Re10(i) = (rho*d^2*v10(i))/mu ;
+end
+
+for i = 1:6
+    Re11(i) = (rho*d^2*v11(i))/mu ;
+end
+
+for i = 1:6
+    Re12(i) = (rho*d^2*v12(i))/mu ;
+end
+
+for i = 1:6
+    Re13(i) = (rho*d^2*v13(i))/mu ;
+end
+
+for i = 1:6
+    Re14(i) = (rho*d^2*v14(i))/mu ;
+end
+
+for i = 1:6
+    Re15(i) = (rho*d^2*v15(i))/mu ;
+end
+
+for i = 1:6
+    Re16(i) = (rho*d^2*v16(i))/mu ;
+end
+
+for i = 1:6
+    Re17(i) = (rho*d^2*v17(i))/mu ;
+end
+
+for i = 1:6
+    Re18(i) = (rho*d^2*v18(i))/mu ;
+end
+
+%% PLOT RE vs VELOCITY
+
+figure (20)
+hold on
+plot (v1, Re1,'o')
+plot (v2, Re2,'o')
+plot (v3, Re3,'o')
+plot (v4, Re4,'o')
+plot (v5, Re5,'o')
+plot (v6, Re6,'o')
+plot (v7, Re7,'o')
+plot (v8, Re8,'o')
+plot (v9, Re9,'o')
+plot (v10, Re10,'o')
+plot (v11, Re11,'o')
+plot (v12, Re12,'o')
+plot (v13, Re13,'o')
+plot (v14, Re14,'o')
+plot (v15, Re15,'o')
+plot (v16, Re16,'o')
+plot (v17, Re17,'o')
+plot (v18, Re18,'o')
+hold off
+set(gca, 'FontName', 'Times New Roman');
+set(findall(gcf,'type','text'), 'FontName', 'Times New Roman');
+legend('v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11','v12','v13','v14','v15','v16','v17','v18','location','best')
+xlabel ('V [m/s]','FontName', 'Times New Roman')
+ylabel ('Re [-]','FontName', 'Times New Roman')
+title('Values of Re','FontName', 'Times New Roman')
+saveas(figure(20),'Re.jpg')
+
+
